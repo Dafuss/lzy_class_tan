@@ -1,16 +1,14 @@
 package com.example.msi;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
 public class Login extends AppCompatActivity implements View.OnClickListener{
     //实例化控件
     private SharedPreferences pref;
@@ -28,7 +26,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         passwordEdit = (EditText)findViewById(R.id.pass_word);
         remember_user = (CheckBox)findViewById(R.id.remember_user);
         boolean isRemember = pref.getBoolean("remember_user",false);
-        if(isRemember){
+        if (isRemember){
+            //选择了记住密码，那么将值保存
             String username = pref.getString("username","");
             String password = pref.getString("password","");
             usernameEdit.setText(username);
@@ -40,14 +39,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         login.setOnClickListener(this);
     }
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
                 String username = usernameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
-                if(username.equals("root")&&password.equals("123456")){
+                if(username.equals("root") && password.equals("123456")){
                     editor = pref.edit();
-                    if(remember_user.isChecked()){
+                    if (remember_user.isChecked()){
                         editor.putString("username",username);
                         editor.putString("password",password);
                         editor.putBoolean("remember_user",true);
@@ -58,10 +57,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     Intent j = new Intent(Login.this,Index.class);
                     startActivity(j);
                     finish();
-                }else {
-                    Toast.makeText(Login.this,"账号密码不正确",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(Login.this,
+                            "账号密码不正确！",
+                            Toast.LENGTH_LONG).show();
                 }
                 break;
+
         }
     }
 }

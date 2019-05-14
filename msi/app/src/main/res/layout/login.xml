@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <EditText
         android:id="@+id/user_name"
         android:layout_width="match_parent"
@@ -33,5 +32,4 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="登录"/>
-
 </LinearLayout>
